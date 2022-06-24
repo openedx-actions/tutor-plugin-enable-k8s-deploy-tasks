@@ -1,0 +1,28 @@
+#------------------------------------------------------------------------------
+# usage: Use tutor to enable the hastexo AWS S3 plugin
+#------------------------------------------------------------------------------
+name: Open edX Tutor k8s enable tutor-contrib-k8s-deploy-tasks plugin
+description: Github Action to install and enable the Tutor plugin lpm0073/tutor-contrib-k8s-deploy-tasks
+branding:
+  icon: 'cloud'
+  color: 'orange'
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3.0.2
+
+    - name: install plugin
+      id: install-plugin
+      shell: bash
+      run: pip install git+https://github.com/lpm0073/tutor-contrib-k8s-deploy-tasks
+
+    - name: Enable plugin
+      id: enable-plugin
+      shell: bash
+      run: tutor plugins enable k8s_deploy_tasks
+
+    - name: Save config
+      id: config-save
+      shell: bash
+      run: tutor config save

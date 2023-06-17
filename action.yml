@@ -22,7 +22,7 @@ runs:
     - name: install plugin
       id: install-plugin
       shell: bash
-      run: pip install git+https://github.com/cookiecutter-openedx/tutor-contrib-k8s-deploy-tasks${{ inputs.tutor-plugin-version != 'latest' && format('@{0}', inputs.tutor-plugin-version) || '' }}
+      run: pip install tutor-contrib-k8s-deploy-tasks${{ inputs.tutor-plugin-version != 'latest' && format('=={0}', inputs.tutor-plugin-version) || '' }}
 
     - name: Enable plugin
       id: enable-plugin

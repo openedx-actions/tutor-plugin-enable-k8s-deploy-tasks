@@ -45,8 +45,13 @@ jobs:
       #
 
       # This action.
+      # tutor-plugin-version is an optional input. default is 'latest'
+      # note that this plugin is installed from the Github repo. The version
+      # refers to the repo branch.
       - name: Enable tutor plugin
-        uses: openedx-actions/tutor-plugin-enable-k8s-deploy-tasks@v0
+        uses: openedx-actions/tutor-plugin-enable-k8s-deploy-tasks@v1
+        with:
+          tutor-plugin-version: open-release/olive.master
 
       #
       # ... more steps to deploy your Open edX instance to k8s ...

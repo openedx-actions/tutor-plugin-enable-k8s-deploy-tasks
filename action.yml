@@ -6,16 +6,23 @@ description: Github Action to install and enable the Tutor plugin lpm0073/tutor-
 branding:
   icon: 'cloud'
   color: 'orange'
+inputs:
+  tutor-plugin-version:
+    description: 'The version of tutor-ecommerce to install'
+    required: false
+    default: latest
+    type: string
+
 runs:
   using: "composite"
   steps:
     - name: Checkout
-      uses: actions/checkout@v3.5.2
+      uses: actions/checkout@v3
 
     - name: install plugin
       id: install-plugin
       shell: bash
-      run: pip install git+https://github.com/lpm0073/tutor-contrib-k8s-deploy-tasks
+      run: pip install git+https://github.com/cookiecutter-openedx/tutor-contrib-k8s-deploy-tasks${{ inputs.tutor-plugin-version != 'latest' && format('@{0}', inputs.tutor-plugin-version) || '' }}
 
     - name: Enable plugin
       id: enable-plugin

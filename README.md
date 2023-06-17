@@ -51,7 +51,7 @@ jobs:
       - name: Enable tutor plugin
         uses: openedx-actions/tutor-plugin-enable-k8s-deploy-tasks@v1
         with:
-          tutor-plugin-version: open-release/olive.master
+          tutor-plugin-version: "15.0.0"
 
       #
       # ... more steps to deploy your Open edX instance to k8s ...
